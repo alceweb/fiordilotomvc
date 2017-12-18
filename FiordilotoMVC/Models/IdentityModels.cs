@@ -29,5 +29,7 @@ namespace FiordilotoMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Eventi> Eventis { get; set; }
     }
 }

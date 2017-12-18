@@ -7,16 +7,28 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Salve " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <div>
+                <a href="@Url.Action("IndexUs", "UsersAdmin")">
+                    @if (File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @User.Identity.GetUserId() + ".jpg")))
+                    {
+                        <img class="img-login" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @User.Identity.GetUserId() + ".jpg")" />
+
+                    }
+                    else
+                    {
+                        <img class="img-login" src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" />
+                    }
+                </a>
+            </div>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Disconnetti</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-sign-out"></span></a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrazione", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Accedi", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(" ", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="fa fa-pencil-square-o" })</li>
+        <li>@Html.ActionLink(" ", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "fa fa-sign-in" })</li>
     </ul>
 }

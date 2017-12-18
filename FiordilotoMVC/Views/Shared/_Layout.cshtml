@@ -7,10 +7,13 @@
     <title>@ViewBag.Title - Applicazione ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
+        <img class="img-scritta-nav" src="~/Content/Immagini/ScrittaNav1.png" />
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,28 +21,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nome applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Chi siamo", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contatti", "Contact", "Home")</li>
+                    <li>@Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "fa fa-home fa-2x txt-viola" })</li>
+                    <li>@Html.ActionLink("Spettacoli", "SpettacoliIntro", "Home")</li>
+                    <li>@Html.ActionLink("Didattica", "DidatticaIntro", "Home")</li>
+                    <li>@Html.ActionLink("Corsi", "CorsiIntro", "Home")</li>
+                    <li>@Html.ActionLink("Counseling", "CounselingIntro", "Home")</li>
+                    <li>@Html.ActionLink("La casa", "CasaIntro", "Home")</li>
+                    <li>@Html.ActionLink("Come un fior di loto è...", "FDL", "Home")</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"></a></li>
+                        <li><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"></a></li>
+                        <li><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"></a></li>
+                        <li><a href="@Url.Action("Index", "Documentis")" class="glyphicon glyphicon-folder-open"></a></li>
+                    }
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/lightbox-2.6.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

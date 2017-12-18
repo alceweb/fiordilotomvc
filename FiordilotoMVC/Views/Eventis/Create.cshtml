@@ -1,0 +1,129 @@
+﻿@model FiordilotoMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container body-content">
+
+    <h2 class="text-center txt-viola">Nuovo evento</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr class="hr1"/>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Vendita, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Vendita)
+                        @Html.ValidationMessageFor(model => model.Vendita, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Didattica, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Didattica)
+                        @Html.ValidationMessageFor(model => model.Didattica, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Corso, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Corso)
+                        @Html.ValidationMessageFor(model => model.Corso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Evidenza, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Evidenza)
+                        @Html.ValidationMessageFor(model => model.Evidenza, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Archivio, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Archivio)
+                        @Html.ValidationMessageFor(model => model.Archivio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col col-md-2 text-center">
+                    @Html.LabelFor(model => model.Counseling, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Counseling)
+                        @Html.ValidationMessageFor(model => model.Counseling, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <hr class="hr3" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Titolo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Titolo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Titolo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DescrizioneB, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DescrizioneB, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DescrizioneB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Descrizione, new {@class = "ckeditor"})
+                    @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Regia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Regia, new { @class = "ckeditor" })
+                    @Html.ValidationMessageFor(model => model.Regia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Partecipazioni, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Partecipazioni, new { @class = "ckeditor" })
+                    @Html.ValidationMessageFor(model => model.Partecipazioni, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crea evento" class="btn btn-success" />
+                    @Html.ActionLink("Torna alla lista", "Index", null, new { @class = "btn btn-primary" })
+             </div>
+            </div>
+        </div>
+    }
+
+    <div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+}

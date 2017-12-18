@@ -1,0 +1,20 @@
+﻿
+
+@{
+    ViewBag.Title = "Corsi";
+}
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
+<div class="div-counseling-top">
+    <h1 class="text-justify">
+        "Lo spettacolo del cielo mi sconvolge. Mi sconvolge vedere, in un cielo immenso, la falce della luna o il sole."
+    </h1>
+    <h2 class="text-right">Joan Mirò</h2>
+
+
+
+</div>
+<div class="div-counseling-bottom">
+    <a href="@Url.Action(ViewBag.Title, "Home", new {id = "Counseling" }, null)">
+        <h1 class="alert alert-fiordiloto">Corsi</h1>
+    </a>
+</div>

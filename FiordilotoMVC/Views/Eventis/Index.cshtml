@@ -1,0 +1,87 @@
+﻿@model IEnumerable<FiordilotoMVC.Models.Eventi>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container body-content">
+
+    <h2>Eventi</h2>
+    <hr class="hr4" />
+    <p>
+        <a href="@Url.Action("Create", "Eventis")" class="btn btn-primary"><span class="badge">@ViewBag.EventiCount</span> Nuovo evento</a>
+    </p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">
+                   Vend.
+                </th>
+                <th class="text-center">
+                    Dida.
+                </th>
+                <th class="text-center">
+                    Corso
+                </th>
+                <th class="text-center">
+                    Evid.
+                </th>
+                <th class="text-center">
+                    Arch.
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titolo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Vendita)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Didattica)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Corso)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Evidenza)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Archivio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titolo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.Evento_Id }, new { @class = "fa fa-pencil text-primary" })
+                        @Html.ActionLink(" ", "Details", new { id = item.Evento_Id }, new { @class = "fa fa-list text-success" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Evento_Id }, new { @class = "fa fa-trash text-danger" })
+                    </td>
+                </tr>
+
+
+        }
+        </tbody>
+
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').filterTable();
+        });
+
+    </script>
+}

@@ -1,0 +1,82 @@
+﻿@model FiordilotoMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+    <h2>Dettaglio evento</h2>
+
+    <div>
+        <hr class="hr4"/>
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd>
+                <strong>@Html.DisplayNameFor(model => model.Vendita)  </strong>@Html.DisplayFor(model => model.Vendita) -
+                <strong>@Html.DisplayNameFor(model => model.Didattica)  </strong>@Html.DisplayFor(model => model.Didattica) -
+                <strong>@Html.DisplayNameFor(model => model.Corso)  </strong>@Html.DisplayFor(model => model.Corso) -
+                <strong>@Html.DisplayNameFor(model => model.Evidenza)  </strong>@Html.DisplayFor(model => model.Evidenza) -
+                <strong>@Html.DisplayNameFor(model => model.Archivio)  </strong>@Html.DisplayFor(model => model.Archivio)
+                <strong>@Html.DisplayNameFor(model => model.Counseling)  </strong>@Html.DisplayFor(model => model.Counseling)
+
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dd>
+
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Titolo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Titolo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DescrizioneB)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.DescrizioneB)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Descrizione)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Regia)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Regia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Data)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Data)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Partecipazioni)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Partecipazioni)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modifica", "Edit", new { id = Model.Evento_Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Torna alla lista", "Index", null, new { @class = "btn btn-success" })
+    </p>
+
+</div>

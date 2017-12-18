@@ -21,11 +21,46 @@ namespace FiordilotoMVC
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/jquery.filtertable.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/bootstrap-datepicker3.css",
+                      "~/Content/overlay-bootstrap.css",
+                      "~/Content/lightbox.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/avatar").Include(
+                      "~/Scripts/site.avatar.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/slide").Include(
+                     "~/Scripts/site.slide.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/icona").Include(
+                     "~/Scripts/site.icona.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
+                      "~/Scripts/jquery.Jcrop.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
+                      "~/Scripts/jquery.form.js"));
+
+            bundles.Add(new StyleBundle("~/Content/jcrop").Include(
+                      "~/Content/jquery.Jcrop.css"));
+
+            bundles.Add(new StyleBundle("~/Content/avatar").Include(
+                      "~/Content/site.avatar.css"));
+
+            bundles.Add(new StyleBundle("~/Content/slide").Include(
+                      "~/Content/site.slide.css"));
+
+            bundles.Add(new StyleBundle("~/Content/icona").Include(
+                      "~/Content/site.icona.css"));
+
+
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Gestione profilo";
+}
+<div class="container body-content">
+    <h2>@ViewBag.Title</h2>
+<hr class="hr4" />
+    <ul class="list-unstyled">
+        <li>
+            <h3><span class="glyphicon glyphicon-floppy-saved"> @Html.ActionLink("Cambia password", "ChangePassword", "Manage")</span></h3>
+        </li>
+        <li>
+            <h3><span class="glyphicon glyphicon-camera"> @Html.ActionLink("Foto profilo", "Upload", "Avatar")</span></h3>
+        </li>
+    </ul>
+
+</div>
+

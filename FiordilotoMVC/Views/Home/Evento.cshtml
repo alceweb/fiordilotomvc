@@ -1,0 +1,118 @@
+﻿@model FiordilotoMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Evento";
+}
+<div class="container body-content-evento">
+
+    <h1 class="text-center">@Model.Titolo</h1>
+    <h4>@Model.Data.ToString("dddd dd MMM yyyy") <span class="badge"> @Model.Data.ToString("HH:mm")</span></h4>
+    <!-- Button trigger modal -->
+    <a type="button" class="btn btn-success btn-xs" data-toggle="modal" href="#@Model.Evento_Id">
+        <span class="fa fa-envelope-o"></span>Contattaci
+    </a>
+    <span>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("EditImgGalleria", "Eventis", new{id = @Model.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
+                                    <a href="@Url.Action("Edit", "Eventis", new{id = @Model.Evento_Id})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
+                                    <a href="@Url.Action("UploadIcona", "Icona", new{id = @Model.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
+                                    <a href="@Url.Action("UploadSlide", "Image", new{id = @Model.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
+        }
+    </span>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="@Model.Evento_Id" tabindex="-1" role="dialog" aria-labelledby="@Model.Evento_Id">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Richiesta informazioni<br />
+                        <span class="badge">@Model.Titolo</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nome</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Nome">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Cognome</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Cognome">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Cellulare</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Cellulare">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Città</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Città">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Mail</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Mail">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-success">Invia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="div-evento">
+    @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/Slide/" + Model.Evento_Id + ".jpg")))
+    {
+        <img src="@Url.Content("~/Content/Immagini/Slide/" + Model.Evento_Id + ".jpg")" />
+    }
+    else
+    {
+        <img  src="~/Content/Immagini/Scritta3.png" />
+    }
+</div>
+
+<div class="container body-content">
+    <h4 class="txt-bianco"><em>@Model.DescrizioneB</em></h4>
+    <h4>@Html.Raw(Model.Descrizione)</h4>
+    <a type="button" data-toggle="modal" href="#@Model.Evento_Id">
+        <span class="fa fa-pencil-square-o fa-2x"></span>
+    </a>
+
+</div>
+
+<div class="galla1">
+    <hr class="hr3" />
+    @foreach (var item in ViewBag.Immagini)
+        {
+            var filename = Path.GetFileName(item);
+        <div >
+            <span>
+                <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
+            </span>
+
+        </div>
+    }
+
+</div>
+
+
+

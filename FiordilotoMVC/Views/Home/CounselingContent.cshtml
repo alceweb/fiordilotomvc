@@ -1,0 +1,116 @@
+﻿@model IEnumerable<FiordilotoMVC.Models.Eventi>
+
+
+@{
+    ViewBag.Title = "Teatro counseling";
+}
+<img class="img-index" src="~/Content/Immagini/FiordilotoIcona1.png" />
+<div class="body-content">
+    @foreach (var item in Model.GroupBy(a => a.Data.Year).Select(a => new { anno = a.Key, evento = a.OrderByDescending(e => e.Data) }))
+    {
+        <div class="row ">
+            <h1 class="txt-viola text-center">@ViewBag.Title @item.anno</h1>
+            <hr class="hr1" />
+
+            @foreach (var item1 in item.evento)
+                {
+                <div class="col-sm-6 col-xs-12 col-md-3 col-lg-2 div-corsi">
+                    <span>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("EditImgGalleria", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
+                            <a href="@Url.Action("Edit", "Eventis", new{id = @item1.Evento_Id})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
+                            <a href="@Url.Action("UploadIcona", "Icona", new{id = @item1.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
+                            <a href="@Url.Action("UploadSlide", "Image", new{id = @item1.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
+                        }
+                    </span>
+                    <div class="thumbnail">
+
+                        <div class="galla">
+                            <div>
+                                <a href="@Url.Action("Evento", "Home", new { id = item1.Evento_Id })">
+                                    @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/Icona/" + item1.Evento_Id + ".jpg")))
+                                    {
+                                        <img src="@Url.Content("~/Content/Immagini/Icona/" + item1.Evento_Id + ".jpg")" alt="" />
+                                        <div class="text-center h4">
+                                            <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
+                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Immagini/FiordilotoIcona1.png" />
+                                        <div class="text-center">
+                                            <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
+                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
+                                        </div>
+                                    }
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                    <!-- Modal -->
+                <div class="modal fade" id="@item1.Evento_Id" tabindex="-1" role="dialog" aria-labelledby="@item1.Evento_Id">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Richiesta informazioni<br />
+                                    <span class="badge">@item1.Titolo</span>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Nome</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="Nome">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Cognome</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="Cognome">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Cellulare</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="Cellulare">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Città</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="Città">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Mail</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" placeholder="Mail">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+                                <button type="button" class="btn btn-success">Invia</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>
+

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FiordilotoMVC.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Gestione utenti";
+}
+<div class="container body-content">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col col-md-8">
+            <a href="~@Url.Action("Create", "UserAdmin")" class="btn btn-primary"><span class="badge">@ViewBag.UtentiCount</span> Nuovo</a>
+        </div>
+        <div class="col col-md-4 text-right">
+        </div>
+    </div>
+    <p>
+    </p>
+    <table class="table table-hover tablef">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                @*<th></th>*@
+            </tr>
+
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (File.Exists(@Server.MapPath("/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")))
+                {
+                        <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")" />
+                    }
+                    else
+                    {
+                        <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil text-primary" })
+                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-list text-success" })
+                    @*@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash text-danger" })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

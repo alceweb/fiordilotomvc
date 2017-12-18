@@ -1,7 +1,31 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<div>
+    <img class="img-index" src="~/Content/Immagini/Scritta3.png" />
+</div>
 
-<p>Use this area to provide additional information.</p>
+<div class="container body-content">
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <button type="button" id="myButton" class="btn btn-primary" autocomplete="off">
+        Loading state
+    </button>
+    <button onclick="scrollWin()">Click me to scroll horizontally!</button><br><br>
+    <p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p>
+    <p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p><p>Click the button to scroll the document window to 500 pixels horizontally.</p>
+
+    <a href="~/Content/Immagini/Eventi/34/3012.jpg" data-lightbox="roadtrip"><img src="~/Content/Immagini/Eventi/34/3012.jpg" /></a>
+    <a href="~/Content/Immagini/Eventi/34/3012_06072016-220049.jpg" data-lightbox="roadtrip"><img src="~/Content/Immagini/Eventi/34/3012_06072016-220049.jpg" /></a>
+    <script>
+        function scrollWin() {
+            window.scrollTo(50, 150);
+        }
+    </script>
+
+@section Scripts {
+
+    <script src="~/Scripts/lightbox-2.6.min.js"></script>
+}
+</div>

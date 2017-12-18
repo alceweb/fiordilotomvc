@@ -1,0 +1,20 @@
+﻿
+
+@{
+    ViewBag.Title = "Didattica";
+}
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
+<div class="div-counseling-top">
+    <h1 class="text-justify">
+        "La Vita non è uno spettacolo muto o in bianco e nero.<br/> È un arcobaleno inesauribile di colori, un concerto interminabile di rumori, un caos fantasmagorico di voci e di volti, di creature le cui azioni si intrecciano o si sovrappongono per tessere la catena di eventi che determinano il nostro personale destino."
+    </h1>
+    <h2 class="text-right">Oriana Fallaci</h2>
+
+
+
+</div>
+<div class="div-counseling-bottom">
+    <a href="@Url.Action(ViewBag.Title, "Home", new {id = "Counseling" }, null)">
+        <h1 class="alert alert-fiordiloto">Didattica</h1>
+    </a>
+</div>

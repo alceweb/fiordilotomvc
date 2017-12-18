@@ -1,0 +1,113 @@
+﻿@model FiordilotoMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container body-content">
+
+    <h2>Cancella evento</h2>
+
+    <h3>L'evento verrà dafinitivamente cancellato</h3>
+    <div>
+        <hr class="hr4" />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Vendita)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendita)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Didattica)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Didattica)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Corso)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Corso)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Titolo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Titolo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DescrizioneB)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.DescrizioneB)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Descrizione)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Regia)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Regia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Evidenza)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Evidenza)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Data)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Data)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Partecipazioni)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Partecipazioni)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Archivio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Archivio)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Cancella" class="btn btn-danger" />
+                @Html.ActionLink("Torna alla lista", "Index", null, new {@class= "btn btn-success" })
+            </div>
+    }
+    </div>
+</div>
