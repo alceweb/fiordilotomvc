@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <img class="img-scritta-nav" src="~/Content/Immagini/ScrittaNav1.png" />
+        <a href="@Url.Action("Index", "Home")"><img class="img-scritta-nav" src="~/Content/Immagini/ScrittaNav1.png" /></a>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,19 +25,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "fa fa-home fa-2x txt-viola" })</li>
+                    <li>@Html.ActionLink("Come un fior di loto è...", "FDLIntro", "Home")</li>
                     <li>@Html.ActionLink("Spettacoli", "SpettacoliIntro", "Home")</li>
                     <li>@Html.ActionLink("Didattica", "DidatticaIntro", "Home")</li>
                     <li>@Html.ActionLink("Corsi", "CorsiIntro", "Home")</li>
-                    <li>@Html.ActionLink("Counseling", "CounselingIntro", "Home")</li>
-                    <li>@Html.ActionLink("La casa", "CasaIntro", "Home")</li>
-                    <li>@Html.ActionLink("Come un fior di loto è...", "FDL", "Home")</li>
+                    <li><a href="@Url.Action("CounselingIntro", "Home")">TeatroCounseling<span class="h5">®</span></a>
+                    <li>@Html.ActionLink("La nostre parole", "CasaIntro", "Home")</li>
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"></a></li>
                         <li><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"></a></li>
                         <li><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"></a></li>
-                        <li><a href="@Url.Action("Index", "Documentis")" class="glyphicon glyphicon-folder-open"></a></li>
                     }
 
 

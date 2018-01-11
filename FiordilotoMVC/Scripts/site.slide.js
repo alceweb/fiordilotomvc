@@ -155,3 +155,74 @@ function saveSlide() {
         alert('Cannot upload avatar at this time');
     });
 }
+
+function saveSlide1() {
+    var img = $('#preview-pane .preview-container img');
+    var evid = $('#eid').text();
+    $('#avatar-crop-box button').addClass('disabled');
+
+    $.ajax({
+        type: "POST",
+        url: "/Image/Save1",
+        traditional: true,
+        data: {
+            w: img.css('width'),
+            h: img.css('height'),
+            l: img.css('marginLeft'),
+            t: img.css('marginTop'),
+            fileName: img.attr('src'),
+            eid: evid
+        }
+    }).done(function (data) {
+        if (data.success === true) {
+            $('#avatar-result img').attr('src', data.avatarFileLocation);
+
+            $('#avatar-result').removeClass('hidden');
+
+            if (!keepCropBox) {
+                $('#avatar-crop-box').addClass('hidden');
+            }
+        } else {
+            alert(data.errorMessage)
+        }
+    }).fail(function (e) {
+        alert('Cannot upload avatar at this time');
+    });
+}
+
+function saveGalleria() {
+    var img = $('#preview-pane .preview-container img');
+    var evid = $('#eid').text();
+    var vid = $('#id').text();
+    $('#avatar-crop-box button').addClass('disabled');
+
+    $.ajax({
+        type: "POST",
+        url: "/Image/SaveGalleria",
+        traditional: true,
+        data: {
+            w: img.css('width'),
+            h: img.css('height'),
+            l: img.css('marginLeft'),
+            t: img.css('marginTop'),
+            fileName: img.attr('src'),
+            eid: evid,
+            id: vid,
+        }
+    }).done(function (data) {
+        if (data.success === true) {
+            $('#avatar-result img').attr('src', data.avatarFileLocation);
+
+            $('#avatar-result').removeClass('hidden');
+
+            if (!keepCropBox) {
+                $('#avatar-crop-box').addClass('hidden');
+            }
+        } else {
+            alert(data.errorMessage)
+        }
+    }).fail(function (e) {
+        alert('Cannot upload avatar at this time');
+    });
+}
+

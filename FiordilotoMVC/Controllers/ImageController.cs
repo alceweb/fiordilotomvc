@@ -10,9 +10,11 @@ using Microsoft.AspNet.Identity;
 
 namespace FiordilotoMVC.Controllers
 {
+   [Authorize(Roles ="Admin")]
     public class ImageController : Controller
     {
-         private const int SlideWidth = 1200;  // ToDo - Change the size of the stored avatar image
+        
+       private const int SlideWidth = 1200;  // ToDo - Change the size of the stored avatar image
        private const int SlideHeight = SlideWidth /2; // ToDo - Change the size of the stored avatar image
         private const int SlideScreenWidth = 1200;  // ToDo - Change the value of the width of the image on the screen
 
@@ -37,6 +39,60 @@ namespace FiordilotoMVC.Controllers
 
         [ValidateAntiForgeryToken]
         public ActionResult _UploadSlide(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files == null || !files.Any()) return Json(new { success = false, errorMessage = "No file uploaded." });
+            var file = files.FirstOrDefault();  // get ONE only
+            if (file == null || !IsImage(file)) return Json(new { success = false, errorMessage = "File is of wrong format." });
+            if (file.ContentLength <= 0) return Json(new { success = false, errorMessage = "File cannot be zero length." });
+            var webPath = GetTempSavedFilePath(file);
+            //mistertommat - 18 Nov '15 - replacing '\' to '//' results in incorrect image url on firefox and IE,
+            //                            therefore replacing '\\' to '/' so that a proper web url is returned.            
+            return Json(new { success = true, fileName = webPath.Replace("\\", "/") }); // success
+        }
+
+        [HttpGet]
+        public ActionResult UploadGalleria(string id)
+        {
+            ViewBag.Eid = id + DateTime.Now.ToString("dd-MM-yyy-hh-mm-ss");
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult _UploadGalleria(string id)
+        {
+            return PartialView();
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult _UploadGalleria(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files == null || !files.Any()) return Json(new { success = false, errorMessage = "No file uploaded." });
+            var file = files.FirstOrDefault();  // get ONE only
+            if (file == null || !IsImage(file)) return Json(new { success = false, errorMessage = "File is of wrong format." });
+            if (file.ContentLength <= 0) return Json(new { success = false, errorMessage = "File cannot be zero length." });
+            var webPath = GetTempSavedFilePath(file);
+            //mistertommat - 18 Nov '15 - replacing '\' to '//' results in incorrect image url on firefox and IE,
+            //                            therefore replacing '\\' to '/' so that a proper web url is returned.            
+            return Json(new { success = true, fileName = webPath.Replace("\\", "/") }); // success
+        }
+
+
+        [HttpGet]
+        public ActionResult UploadSlide1(string id)
+        {
+            ViewBag.Eid = id;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult _UploadSlide1(string id)
+        {
+            return PartialView();
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult _UploadSlide1(IEnumerable<HttpPostedFileBase> files)
         {
             if (files == null || !files.Any()) return Json(new { success = false, errorMessage = "No file uploaded." });
             var file = files.FirstOrDefault();  // get ONE only
@@ -73,6 +129,86 @@ namespace FiordilotoMVC.Controllers
                System.IO.File.Delete(fn);
                 // ... and save the new one.
                 var newFileName = Path.Combine(SlidePath, eid + extension);
+                var newFileLocation = HttpContext.Server.MapPath(newFileName);
+                if (Directory.Exists(Path.GetDirectoryName(newFileLocation)) == false)
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(newFileLocation));
+                }
+
+                img.Save(newFileLocation);
+                return Json(new { success = true, avatarFileLocation = newFileName });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMessage = "Unable to upload file.\nERRORINFO: " + ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Save1(string t, string l, string h, string w, string fileName, string eid)
+        {
+            try
+            {
+                // Calculate dimensions
+                var top = Convert.ToInt32(t.Replace("-", "").Replace("px", ""));
+                var left = Convert.ToInt32(l.Replace("-", "").Replace("px", ""));
+                var height = Convert.ToInt32(h.Replace("-", "").Replace("px", ""));
+                var width = Convert.ToInt32(w.Replace("-", "").Replace("px", ""));
+                var extension = Path.GetExtension(fileName);
+
+                // Get file from temporary folder
+                var fn = Path.Combine(Server.MapPath(MapTempFolder), Path.GetFileName(fileName));
+                // ...get image and resize it, ...
+                var img = new WebImage(fn);
+                img.Resize(width, height);
+                // ... crop the part the user selected, ...
+                var bottom = img.Height - top - SlideHeight;
+                var right = img.Width - left - SlideWidth;
+                img.Crop(top, left, bottom, right);
+                // ... delete the temporary file,...
+                System.IO.File.Delete(fn);
+                // ... and save the new one.
+                var newFileName = Path.Combine(SlidePath, eid + extension);
+                var newFileLocation = HttpContext.Server.MapPath(newFileName);
+                if (Directory.Exists(Path.GetDirectoryName(newFileLocation)) == false)
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(newFileLocation));
+                }
+
+                img.Save(newFileLocation);
+                return Json(new { success = true, avatarFileLocation = newFileName });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMessage = "Unable to upload file.\nERRORINFO: " + ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveGalleria(string t, string l, string h, string w, string fileName, string eid, string id)
+        {
+            try
+            {
+                // Calculate dimensions
+                var top = Convert.ToInt32(t.Replace("-", "").Replace("px", ""));
+                var left = Convert.ToInt32(l.Replace("-", "").Replace("px", ""));
+                var height = Convert.ToInt32(h.Replace("-", "").Replace("px", ""));
+                var width = Convert.ToInt32(w.Replace("-", "").Replace("px", ""));
+                var extension = Path.GetExtension(fileName);
+
+                // Get file from temporary folder
+                var fn = Path.Combine(Server.MapPath(MapTempFolder), Path.GetFileName(fileName));
+                // ...get image and resize it, ...
+                var img = new WebImage(fn);
+                img.Resize(width, height);
+                // ... crop the part the user selected, ...
+                var bottom = img.Height - top - SlideHeight;
+                var right = img.Width - left - SlideWidth;
+                img.Crop(top, left, bottom, right);
+                // ... delete the temporary file,...
+                System.IO.File.Delete(fn);
+                // ... and save the new one.
+                var newFileName = Path.Combine("/Content/Immagini/Eventi/" + id + "/", eid + extension);
                 var newFileLocation = HttpContext.Server.MapPath(newFileName);
                 if (Directory.Exists(Path.GetDirectoryName(newFileLocation)) == false)
                 {

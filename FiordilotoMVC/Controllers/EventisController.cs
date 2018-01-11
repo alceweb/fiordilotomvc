@@ -19,7 +19,7 @@ namespace FiordilotoMVC.Controllers
         // GET: Eventis
         public ActionResult Index()
         {
-            var eventi = db.Eventis.OrderByDescending(e => e.Data).ToList();
+            var eventi = db.Eventis.Where(e=>e.Credits == false).OrderByDescending(e => e.Data).ToList();
             ViewBag.EventiCount = eventi.Count();
             return View(eventi);
         }
@@ -50,7 +50,7 @@ namespace FiordilotoMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Evento_Id,Vendita,Didattica,Corso,Titolo,Evidenza,Counseling,Data,Archivio,DescrizioneB", Exclude ="Descrizione,Regia,Partecipazioni")] Eventi eventi)
+        public ActionResult Create([Bind(Include = "Evento_Id,Vendita,Didattica,Corso,Titolo,Evidenza,Counseling,Credits,Casa,Data,Archivio,DescrizioneB,Città", Exclude ="Descrizione,Regia,Partecipazioni")] Eventi eventi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             eventi.Descrizione = collection["Descrizione"];
@@ -90,7 +90,7 @@ namespace FiordilotoMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Evento_Id,Vendita,Didattica,Corso,Titolo,Evidenza,Counseling,Data,Archivio,DescrizioneB", Exclude = "Descrizione,Regia,Partecipazioni")] Eventi eventi)
+        public ActionResult Edit([Bind(Include = "Evento_Id,Vendita,Didattica,Corso,Titolo,Evidenza,Counseling,Credits,Casa,Data,Archivio,DescrizioneB,Città", Exclude = "Descrizione,Regia,Partecipazioni")] Eventi eventi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             eventi.Descrizione = collection["Descrizione"];
@@ -104,6 +104,39 @@ namespace FiordilotoMVC.Controllers
             }
             return View(eventi);
         }
+
+        public ActionResult EditCredits(int? id, string cre)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Eventi eventi = db.Eventis.Find(id);
+            if (eventi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventi);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCredits(string cre, [Bind(Include = "Evento_Id,Vendita,Didattica,Corso,Titolo,Evidenza,Counseling,Credits,Casa,Data,Archivio,DescrizioneB,Posizione,Città", Exclude = "Descrizione")] Eventi eventi)
+        {
+            FormCollection collection = new FormCollection(Request.Unvalidated().Form);
+            eventi.Descrizione = collection["Descrizione"];
+            eventi.Regia = collection["Regia"];
+            eventi.Partecipazioni = collection["Partecipazioni"];
+            if (ModelState.IsValid)
+            {
+                db.Entry(eventi).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction(cre, "Home");
+
+            }
+            return View(eventi);
+        }
+
 
         public ActionResult EditImgIcon()
         {
@@ -153,5 +186,32 @@ namespace FiordilotoMVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult DeleteImg(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.File = Request.QueryString["file"];
+            Eventi eventi = db.Eventis.Find(id);
+            if (eventi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eventi);
+        }
+
+        [HttpPost, ActionName("DeleteImg")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteImgConfirmed(int id)
+        {
+            var file = "~/Content/Immagini/Eventi/" + id + "/" + Request.QueryString["file"];
+            System.IO.File.Delete(Server.MapPath(file));
+            return RedirectToAction("Evento", "Home", new { id = id });
+
+        }
+
+
     }
 }

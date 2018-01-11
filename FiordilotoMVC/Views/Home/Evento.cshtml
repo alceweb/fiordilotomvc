@@ -6,19 +6,15 @@
 <div class="container body-content-evento">
 
     <h1 class="text-center">@Model.Titolo</h1>
-    <h4>@Model.Data.ToString("dddd dd MMM yyyy") <span class="badge"> @Model.Data.ToString("HH:mm")</span></h4>
-    <!-- Button trigger modal -->
-    <a type="button" class="btn btn-success btn-xs" data-toggle="modal" href="#@Model.Evento_Id">
-        <span class="fa fa-envelope-o"></span>Contattaci
-    </a>
+    <span class="h3">@Model.Città </span><span class="h4">@Model.Data.ToString("dddd dd MMM yyyy")</span><br/>
     <span>
 
         @if (User.IsInRole("Admin"))
         {
-            <a href="@Url.Action("EditImgGalleria", "Eventis", new{id = @Model.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
-                                    <a href="@Url.Action("Edit", "Eventis", new{id = @Model.Evento_Id})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
-                                    <a href="@Url.Action("UploadIcona", "Icona", new{id = @Model.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
-                                    <a href="@Url.Action("UploadSlide", "Image", new{id = @Model.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
+            <a href="@Url.Action("UploadGalleria", "Image", new{id = @Model.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
+           <a href="@Url.Action("Edit", "Eventis", new{id = @Model.Evento_Id})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
+           <a href="@Url.Action("UploadIcona", "Icona", new{id = @Model.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
+           <a href="@Url.Action("UploadSlide", "Image", new{id = @Model.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
         }
     </span>
 
@@ -93,8 +89,13 @@
 <div class="container body-content">
     <h4 class="txt-bianco"><em>@Model.DescrizioneB</em></h4>
     <h4>@Html.Raw(Model.Descrizione)</h4>
+    <hr class="hr1" />
+    <h5><em>@Html.Raw(Model.Regia)</em></h5>
+    <h5><strong><em>@Html.Raw(Model.Partecipazioni)</em></strong></h5>
+
+    <!-- Button trigger modal -->
     <a type="button" data-toggle="modal" href="#@Model.Evento_Id">
-        <span class="fa fa-pencil-square-o fa-2x"></span>
+        <span class="fa fa-pencil-square-o fa-2x btn-fiordiloto"></span>
     </a>
 
 </div>
@@ -102,9 +103,17 @@
 <div class="galla1">
     <hr class="hr3" />
     @foreach (var item in ViewBag.Immagini)
-        {
-            var filename = Path.GetFileName(item);
+    {
+        var filename = Path.GetFileName(item);
         <div >
+            <b>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("DeleteImg", "Eventis", new{id = @Model.Evento_Id, file = @filename})" title="Cancella immagine" class="text-primary h4"><span class="fa fa-trash text-danger"></span></a>
+                }
+            </b>
+
             <span>
                 <a href="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Eventi/" + Html.DisplayFor(model => model.Evento_Id) +"/" + @filename)" alt="" /></a>
             </span>

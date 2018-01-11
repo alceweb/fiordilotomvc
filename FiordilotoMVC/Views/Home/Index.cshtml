@@ -3,14 +3,12 @@
 @{
     ViewBag.Title = "Home";
 }
-@*<video class="fullscreen-video" autoplay loop>
-    <source src="~/Content/Video/Figaro.mp4" type="video/mp4" />
-</video>*@
-<div>
-        @*<img class="img-index" src="~/Content/Immagini/Eventi/313.jpg" />*@
-    <iframe class="fullscreen-video" src="https://www.videoindexer.ai/embed/player/ec51ee069f" frameborder="0" allowfullscreen></iframe>
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/Slide/" + @ViewBag.Title + ".jpg")" />
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("UploadSlide1", "Image", new{id = @ViewBag.Title})" title="Slide" class="btn btn-intro"><span class="fa fa-pencil fa-3x"></span></a>
 
-</div>
+}
 
 @if (ViewBag.EventiCount > 0)
 {
@@ -26,9 +24,9 @@
                     {
                         <div class="item active">
                             <a href="@Url.Action("Evento", "Home", new {id = item2.value.Evento_Id })">
-                                <img src="@Url.Content("~/Content/Immagini/Icona/" + item2.value.Evento_Id + ".jpg")" alt="" />
+                                <img class="img-thumbnail" src="@Url.Content("~/Content/Immagini/Icona/" + item2.value.Evento_Id + ".jpg")" alt="" />
                                 <div class="carousel-caption">
-                                    <titolo class="txt-viola">@item2.value.Titolo</titolo><br />
+                                    <titolo>@item2.value.Titolo</titolo><br />
                                     <ora>@item2.value.Data.ToString("dddd dd MMM yyyy")</ora>
                                 </div>
                             </a>
@@ -39,7 +37,7 @@
                     {
                             <div class="item">
                                 <a href="@Url.Action("Evento", "Home", new {id = item2.value.Evento_Id })">
-                                    <img src="@Url.Content("~/Content/Immagini/Icona/" + item2.value.Evento_Id + ".jpg")" alt="" />
+                                    <img class="img-thumbnail" src="@Url.Content("~/Content/Immagini/Icona/" + item2.value.Evento_Id + ".jpg")" alt="" />
                                     <div class="carousel-caption">
                                         <titolo>@item2.value.Titolo</titolo><br />
                                         <ora>@item2.value.Data.ToString("dddd dd MMM yyyy")</ora>

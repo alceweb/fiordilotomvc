@@ -3,18 +3,26 @@
 @{
     ViewBag.Title = "Didattica";
 }
-<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/Slide/" + @ViewBag.Title + ".jpg")" />
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("UploadSlide1", "Image", new{id = @ViewBag.Title})" title="Slide" class="btn btn-intro"><span class="fa fa-pencil fa-3x"></span></a>
+
+}
 <div class="div-counseling-top">
-    <h1 class="text-justify">
-        "La Vita non è uno spettacolo muto o in bianco e nero.<br/> È un arcobaleno inesauribile di colori, un concerto interminabile di rumori, un caos fantasmagorico di voci e di volti, di creature le cui azioni si intrecciano o si sovrappongono per tessere la catena di eventi che determinano il nostro personale destino."
+    <h1>
+        Il teatro è dare e ricevere in continuazione<br/>
+        è stare davanti ai propri limiti e cercare di superarli<br />
+        è ascoltare e essere ascoltati<br />
+        è prendere la luce, ma anche fare un passo indietro<br />
+        è nascere e morire, è stare insieme anche quando si è soli in scena<br />
+        è curiosità e desiderio<br />
+        è lasciarsi fare, è libertà, è gioco, è rito, è vita<br />
+        il teatro è vita…
     </h1>
-    <h2 class="text-right">Oriana Fallaci</h2>
-
-
-
 </div>
 <div class="div-counseling-bottom">
     <a href="@Url.Action(ViewBag.Title, "Home", new {id = "Counseling" }, null)">
-        <h1 class="alert alert-fiordiloto">Didattica</h1>
+        <h1 class="alert alert-fiordiloto">Didattica   <span class="fa fa-angle-right"></span></h1>
     </a>
 </div>

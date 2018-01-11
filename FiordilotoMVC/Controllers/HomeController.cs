@@ -16,6 +16,11 @@ namespace FiordilotoMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [HttpGet]
+        public ActionResult Pagina(string id)
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             var eventi = db.Eventis.Where(e => e.Evidenza == true).OrderBy(e => e.Data).ToList();
@@ -38,6 +43,23 @@ namespace FiordilotoMVC.Controllers
             }
 
             return View(eventi);
+        }
+
+        public ActionResult Credits(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Eventi/" + id + "/"));
+            ViewBag.Immagini = immagini.ToList();
+            Eventi credits = db.Eventis.Find(id);
+            if (credits == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(credits);
         }
 
         public ActionResult SpettacoliIntro()
@@ -90,15 +112,21 @@ namespace FiordilotoMVC.Controllers
 
         public ActionResult Casa()
         {
-            
-            return View();
+            var casa = db.Eventis.Where(e => e.Casa == true).OrderBy(d => d.Posizione).ThenBy(d=>d.Evento_Id);
+            return View(casa);
         }
 
-        public ActionResult CasaContent()
+        public ActionResult FDLIntro()
         {
-
             return View();
         }
+
+        public ActionResult Fdl()
+        {
+            var fdl = db.Eventis.Where(e => e.Credits == true).OrderBy(d => d.Posizione).ThenBy(d => d.Evento_Id);
+            return View(fdl);
+        }
+
 
         public ActionResult About()
         {
@@ -116,9 +144,5 @@ namespace FiordilotoMVC.Controllers
             return View(eventi);
         }
 
-        public ActionResult FDL()
-        {
-            return View();
-        }
     }
 }

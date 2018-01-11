@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace FiordilotoMVC.Models
 {
@@ -32,15 +33,23 @@ namespace FiordilotoMVC.Models
         public bool Evidenza { get; set; }
         [Display(Name = "Counseling")]
         public bool Counseling { get; set; }
-        [Display(Name ="Data evento")]
+        [Display(Name ="Credits")]
+        public bool Credits { get; set; }
+        [Display(Name ="Parole")]
+        public bool Casa { get; set; }
+        [Display(Name = "Data evento")]
         [DataType(DataType.Date)]
+        [DefaultValue("01/01/2000")]
         [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
         [Display(Name ="Partecipazioni")]
         public string Partecipazioni { get; set; }
         [Display(Name ="Archivio")]
         public bool Archivio { get; set; }
-
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
+        [Display(Name ="Città")]
+        public string Città { get; set; }
     }
 
 }

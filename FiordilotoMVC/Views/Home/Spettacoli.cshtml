@@ -4,7 +4,7 @@
     ViewBag.Title = "Spettacoli";
 }
 <img class="img-index" src="~/Content/Immagini/FiordilotoIcona1.png" />
-<div class="body-content">
+<div class="body-content-fdl">
     @foreach (var item in Model.GroupBy(a => a.Data.Year).Select(a => new { anno = a.Key, evento = a.OrderByDescending(e => e.Data) }))
     {
         <div class="row ">
@@ -18,10 +18,10 @@
 
                         @if (User.IsInRole("Admin"))
                         {
-                            <a href="@Url.Action("EditImgGalleria", "Eventis", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
+                            <a href="@Url.Action("UploadGalleria", "Image", new{id = @item1.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
                             <a href="@Url.Action("Edit", "Eventis", new{id = @item1.Evento_Id})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
                             <a href="@Url.Action("UploadIcona", "Icona", new{id = @item1.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
-                                    <a href="@Url.Action("UploadSlide", "Image", new{id = @item1.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
+                            <a href="@Url.Action("UploadSlide", "Image", new{id = @item1.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
                         }
                     </span>
                     <div class="thumbnail">
@@ -34,7 +34,7 @@
                                         <img src="@Url.Content("~/Content/Immagini/Icona/" + item1.Evento_Id + ".jpg")" alt="" />
                                         <div class="text-center h4">
                                             <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
-                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
+                                            <span class="h5">@item1.Città </span><span class="h6">@item1.Data.ToString("dddd dd MMM yyyy")</span>
                                     </div>
                                     }
                                     else
@@ -42,7 +42,7 @@
                                         <img src="~/Content/Immagini/FiordilotoIcona1.png" />
                                         <div class="text-center">
                                             <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
-                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
+                                            <span class="h5">@item1.Città </span><span class="h6">@item1.Data.ToString("dddd dd MMM yyyy")</span>
                                         </div>
                                     }
                                 </a>

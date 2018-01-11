@@ -1,23 +1,58 @@
-﻿
+﻿@model IEnumerable<FiordilotoMVC.Models.Eventi>
+
 @{
-    ViewBag.Title = "Casa";
+    ViewBag.Title = "casa";
 }
-@*<video class="fullscreen-video" autoplay loop>
-    <source src="~/Content/Video/VideoBN.mp4" type="video/mp4" />
-</video>*@
-<div>
-    <iframe class="fullscreen-video" src="https://www.videoindexer.ai/embed/player/1df8bbe09c" frameborder="0" allowfullscreen></iframe>
-</div>
-<div class="div-counseling-top">
-    <h1 class="text-justify">
-        "La casa è il vostro corpo più grande. Vive nel sole e si addormenta nella quiete della notte; e non è senza sogni"
-    </h1>
-    <h2 class="text-right">Kahlil Gibran</h2>
+<img class="img-index" src="~/Content/Immagini/FiordilotoIcona1.png" />
+<div class="body-content-fdl">
+    <div id="sortable" class="row ">
+        <h1 class="txt-viola text-center">Le nostre parole</h1>
+        <hr class="hr1" />
+
+        @foreach (var item1 in Model.Select((value, i) => new { i, value }))
+            {
+                var sortId = @item1.value.Evento_Id + "_" + @item1.i;
+            <div id="@sortId" class="col-sm-6 col-xs-12 col-md-3 col-lg-2 div-corsi">
+                <span class="txt-bianco">
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("UploadGalleria", "Image", new{id = @item1.value.Evento_Id})" class="text-primary h4" title="Galleria fotografica"><span class="fa fa-camera-retro"></span></a>
+                        <a href="@Url.Action("EditCredits", "Eventis", new{id = @item1.value.Evento_Id, cre = "Casa"})" class="text-danger h4" title="Testo"><span class="fa fa-pencil-square-o"></span></a>
+                        <a href="@Url.Action("UploadIcona", "Icona", new{id = @item1.value.Evento_Id})" class="text-primary h4" title="Icona"><span class="fa fa-picture-o"></span></a>
+                            <a href="@Url.Action("UploadSlide", "Image", new{id = @item1.value.Evento_Id})" class="text-primary h4" title="Slide"><span class="fa fa-slideshare"></span></a>
+                    }
+                </span>
+
+                <div class="thumbnail">
+
+                    <div class="galla">
+                        <div>
+                            <a href="@Url.Action("Credits", "Home", new { id = item1.value.Evento_Id })">
+                                @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/Icona/" + item1.value.Evento_Id + ".jpg")))
+                                {
+                                    <img src="@Url.Content("~/Content/Immagini/Icona/" + item1.value.Evento_Id + ".jpg")" alt="" />
+                                    <div class="text-center h4">
+                                        <h4>@Html.DisplayFor(modelItem => item1.value.Titolo)</h4>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <img src="~/Content/Immagini/FiordilotoIcona1.png" />
+                                    <div class="text-center">
+                                        <h4>@Html.DisplayFor(modelItem => item1.value.Titolo)</h4>
+                                    </div>
+                                }
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
 
 
+            </div>
 
-</div>
+        }
+    </div>
 
-<div class="div-counseling-bottom">
-    <a href="@Url.Action("CasaContent", "Home")"><h1 class="alert alert-fiordiloto">Visita la nostra casa</h1></a>
 </div>

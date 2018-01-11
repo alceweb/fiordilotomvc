@@ -1,0 +1,31 @@
+﻿
+
+@{
+    ViewBag.Title = "FDL";
+}
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/Slide/" + @ViewBag.Title + ".jpg")" />
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("UploadSlide1", "Image", new{id = @ViewBag.Title})" title="Slide" class="btn btn-intro"><span class="fa fa-pencil fa-3x"></span></a>
+
+}
+<div class="div-counseling-top">
+    <h1>
+        "La bellezza salverà il mondo"
+    </h1>
+    <h2>Tutto incomincia con il cuore e la ragione<br />
+    che riconoscono qualcosa di bello e lo seguono.<br />
+        Sono la bellezza, la meraviglia, lo stupore,<br/>
+        il riconoscimento meravigliato<br />
+        che mettono in moto il pensiero,<br />
+        la visione geniale, la comunicazione,<br />
+        la verifica e la possibilità di realizzazione<br />
+        è il progresso - qualcosa che non c'era e adesso c'è.
+
+</h2>
+</div>
+<div class="div-counseling-bottom">
+    <a href="@Url.Action("Fdl", "Home")">
+        <h1 class="alert alert-fiordiloto">Come un Fior di Loto<span class="h5">®</span> è...   <span class="fa fa-angle-right"></span></h1>
+    </a>
+</div>

@@ -218,6 +218,18 @@
     <Compile Include="Migrations\201712011048531_counseling.Designer.cs">
       <DependentUpon>201712011048531_counseling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712201153020_credits.cs" />
+    <Compile Include="Migrations\201712201153020_credits.Designer.cs">
+      <DependentUpon>201712201153020_credits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712211138568_posizioneFDL.cs" />
+    <Compile Include="Migrations\201712211138568_posizioneFDL.Designer.cs">
+      <DependentUpon>201712211138568_posizioneFDL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801111640000_citta.cs" />
+    <Compile Include="Migrations\201801111640000_citta.Designer.cs">
+      <DependentUpon>201801111640000_citta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -238,8 +250,8 @@
     <Content Include="Content\CarouselFade.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Immagini\302.jpg" />
-    <Content Include="Content\Immagini\303.jpg" />
+    <Content Include="Content\Immagini\casa.jpg" />
+    <Content Include="Content\Immagini\Counseling.jpg" />
     <Content Include="Content\Immagini\304.jpg" />
     <Content Include="Content\Immagini\321.jpg" />
     <Content Include="Content\Immagini\Alessandro.jpg" />
@@ -272,6 +284,7 @@
     <Content Include="Content\Immagini\FiordilotoIcona.png" />
     <Content Include="Content\Immagini\FiordilotoIcona1.png" />
     <Content Include="Content\Immagini\FotoIscritti\anonimous.jpg" />
+    <Content Include="Content\Immagini\Home.jpg" />
     <Content Include="Content\Immagini\ScrittaNav1.png" />
     <Content Include="Content\Immagini\Spettacoli.jpg" />
     <Content Include="Content\jquery.Jcrop.css" />
@@ -773,8 +786,6 @@
     <Content Include="Views\Home\Counseling.cshtml" />
     <Content Include="Views\Home\Casa.cshtml" />
     <Content Include="Views\Home\CounselingContent.cshtml" />
-    <Content Include="Views\Home\CasaContent.cshtml" />
-    <Content Include="Views\Home\FDL.cshtml" />
     <Content Include="Views\Home\SpettacoliIntro.cshtml" />
     <Content Include="Views\Home\CorsiIntro.cshtml" />
     <Content Include="Views\Home\DidatticaIntro.cshtml" />
@@ -782,6 +793,16 @@
     <Content Include="Views\Home\CounselingIntro.cshtml" />
     <Content Include="Views\Intro\UploadIntro.cshtml" />
     <Content Include="Views\Intro\_UploadIntro.cshtml" />
+    <Content Include="Views\Home\Credits.cshtml" />
+    <Content Include="Views\Image\_UploadSlide1.cshtml" />
+    <Content Include="Views\Image\UploadSlide1.cshtml" />
+    <Content Include="Views\Home\FDLIntro.cshtml" />
+    <Content Include="Views\Home\Fdl.cshtml" />
+    <Content Include="Views\Eventis\EditCredits.cshtml" />
+    <Content Include="Views\Image\UploadGalleria.cshtml" />
+    <Content Include="Views\Image\_UploadGalleria.cshtml" />
+    <Content Include="Views\Eventis\DeleteImg.cshtml" />
+    <Content Include="Views\Home\Pagina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -849,6 +870,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712011048531_counseling.resx">
       <DependentUpon>201712011048531_counseling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201153020_credits.resx">
+      <DependentUpon>201712201153020_credits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712211138568_posizioneFDL.resx">
+      <DependentUpon>201712211138568_posizioneFDL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111640000_citta.resx">
+      <DependentUpon>201801111640000_citta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

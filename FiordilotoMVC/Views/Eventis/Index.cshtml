@@ -23,10 +23,16 @@
                     Corso
                 </th>
                 <th class="text-center">
-                    Evid.
+                    Counseling
                 </th>
                 <th class="text-center">
-                    Arch.
+                    Evid.
+                </th>
+               <th class="text-center">
+                    Credits
+                </th>
+                <th class="text-center">
+                    Casa
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Titolo)
@@ -34,7 +40,10 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Data)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Città)
+                </th>
+               <th></th>
             </tr>
 
         </thead>
@@ -52,21 +61,44 @@
                         @Html.DisplayFor(modelItem => item.Corso)
                     </td>
                     <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Counseling)
+                    </td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Evidenza)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.Archivio)
+                        @Html.DisplayFor(modelItem => item.Credits)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Casa)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Titolo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Data)
+                        @item.Data.ToString("dd-MMM-yyyy")
                     </td>
                     <td>
-                        @Html.ActionLink(" ", "Edit", new { id = item.Evento_Id }, new { @class = "fa fa-pencil text-primary" })
-                        @Html.ActionLink(" ", "Details", new { id = item.Evento_Id }, new { @class = "fa fa-list text-success" })
-                        @Html.ActionLink(" ", "Delete", new { id = item.Evento_Id }, new { @class = "fa fa-trash text-danger" })
+                        @Html.DisplayFor(modelItem => item.Città)
+                    </td>
+                    <td>
+                        @if (item.Credits == true)
+                        {
+                            @Html.ActionLink(" ", "EditCredits", new { id = item.Evento_Id, cre = "Fdl" }, new { @class = "fa fa-pencil text-primary", title = "Modifica" })
+                        }
+                        else if (item.Casa == true)
+                        {
+                            @Html.ActionLink(" ", "EditCredits", new { id = item.Evento_Id, cre = "Casa" }, new { @class = "fa fa-pencil text-primary", title = "Modifica" })
+
+
+                        }
+                        else
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.Evento_Id }, new { @class = "fa fa-pencil text-primary", title = "Modifica" })
+
+                        }
+                        @Html.ActionLink(" ", "Details", new { id = item.Evento_Id }, new { @class = "fa fa-list text-success", title="Dettagli" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Evento_Id }, new { @class = "fa fa-trash text-danger", title="Cancella" })
                     </td>
                 </tr>
 

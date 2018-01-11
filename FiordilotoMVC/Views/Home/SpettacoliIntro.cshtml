@@ -3,19 +3,31 @@
 @{
     ViewBag.Title = "Spettacoli";
 }
-<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
-<a href=#nogo" title="Slide" class="btn btn-intro" ><span class="fa fa-pencil fa-3x"></span></a>
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/Slide/" + @ViewBag.Title + ".jpg")" />
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("UploadSlide1", "Image", new{id = @ViewBag.Title})" title="Slide" class="btn btn-intro"><span class="fa fa-pencil fa-3x"></span></a>
+
+}
 <div class="div-counseling-top">
     <h1 class="text-justify">
-        "Oh spettacolo! Così muore ciò che i popoli fanno! Che un tal passato per l'anima è un abisso profondo! "
+        "Guarda, ascolta<br/>
+stai davanti a me con un cuore docile<br />
+                                stai, semplicemente.<br />
+Guarda, ascolta<br />
+la scatola magica del teatro<br />
+ti porta altrove<br />
+in un posto lontano e<br />
+                         vicino al tuo cuore<br />
+Guarda, ascolta..."
     </h1>
-    <h2 class="text-right">Le voci interiori, 1837</h2>
+    <h3 class="text-right">Federica Cavalli</h3>
 
 
 
 </div>
 <div class="div-counseling-bottom">
-    <a href="@Url.Action(ViewBag.Title, "Home", new {id = "Counseling" }, null)">
-        <h1 class="alert alert-fiordiloto">Spettacoli</h1>
+    <a href="@Url.Action(ViewBag.Title, "Home")">
+        <h1 class="alert alert-fiordiloto">Spettacoli  <span class="fa fa-angle-right"></span></h1>
     </a>
 </div>

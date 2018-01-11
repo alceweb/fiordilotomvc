@@ -1,0 +1,29 @@
+﻿@model FiordilotoMVC.Models.Eventi
+
+@{
+    ViewBag.Title = "Cancella immagine";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<h3 class="text-center">@Model.Titolo</h3>
+<hr class="hr1" />
+<div class="container">
+
+    <span class="galla2">
+        <img src="@Url.Content("~/Content/Immagini/Eventi/" + Model.Evento_Id + "/" + @ViewBag.File)" />
+
+    </span>
+    <hr />
+    <div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Elimina" class="btn btn-danger" />
+                @Html.ActionLink("Annulla", "Evento", "Home", new { id = Model.Evento_Id }, new { @Class = "btn btn-success" })
+            </div>
+        }
+    </div>
+</div>

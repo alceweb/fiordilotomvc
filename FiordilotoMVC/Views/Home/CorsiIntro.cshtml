@@ -3,18 +3,33 @@
 @{
     ViewBag.Title = "Corsi";
 }
-<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
+<img class="fullscreen-video" src="@Url.Content("~/Content/Immagini/Slide/" + @ViewBag.Title + ".jpg")" />
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("UploadSlide1", "Image", new{id = @ViewBag.Title})" title="Slide" class="btn btn-intro"><span class="fa fa-pencil fa-3x"></span></a>
+
+}
 <div class="div-counseling-top">
     <h1 class="text-justify">
-        "Lo spettacolo del cielo mi sconvolge. Mi sconvolge vedere, in un cielo immenso, la falce della luna o il sole."
+        Un seme gettato<br/>
+Un pungolo continuo<br/>
+Un ricamo sulla vita<br/>
+che piano piano<br/>
+diventa un affondo<br/>
+nella vita stessa<br/>
+Un corpo che diventa docile<br/>
+che graffia la pietra<br/>
+modella la forma e la parola<br/>
+elimina fronzoli<br/>
+fino al mistero della vita stessa...<br/>
     </h1>
-    <h2 class="text-right">Joan Mirò</h2>
+    <h3 class="text-right">Federica Cavalli</h3>
 
 
 
 </div>
 <div class="div-counseling-bottom">
-    <a href="@Url.Action(ViewBag.Title, "Home", new {id = "Counseling" }, null)">
-        <h1 class="alert alert-fiordiloto">Corsi</h1>
+    <a href="@Url.Action(ViewBag.Title, "Home")">
+        <h1 class="alert alert-fiordiloto">Corsi  <span class="fa fa-angle-right"></span></h1>
     </a>
 </div>
