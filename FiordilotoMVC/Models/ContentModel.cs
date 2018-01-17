@@ -35,7 +35,7 @@ namespace FiordilotoMVC.Models
         public bool Counseling { get; set; }
         [Display(Name ="Credits")]
         public bool Credits { get; set; }
-        [Display(Name ="Parole")]
+        [Display(Name ="Scritti&Opinioni")]
         public bool Casa { get; set; }
         [Display(Name = "Data evento")]
         [DataType(DataType.Date)]

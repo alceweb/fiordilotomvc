@@ -19,7 +19,7 @@ namespace FiordilotoMVC.Controllers
         // GET: Eventis
         public ActionResult Index()
         {
-            var eventi = db.Eventis.Where(e=>e.Credits == false).OrderByDescending(e => e.Data).ToList();
+            var eventi = db.Eventis.OrderByDescending(e => e.Data).ToList();
             ViewBag.EventiCount = eventi.Count();
             return View(eventi);
         }

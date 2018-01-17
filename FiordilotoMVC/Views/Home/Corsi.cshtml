@@ -33,19 +33,19 @@
                                     @if (System.IO.File.Exists(Server.MapPath("~/Content/Immagini/Icona/" + item1.Evento_Id + ".jpg")))
                                     {
                                         <img src="@Url.Content("~/Content/Immagini/Icona/" + item1.Evento_Id + ".jpg")" alt="" />
-                                        <div class="text-center h4">
-                                            <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
-                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
-                                        </div>
                                     }
                                     else
                                     {
                                         <img src="~/Content/Immagini/FiordilotoIcona1.png" />
-                                        <div class="text-center">
-                                            <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
-                                            <h5>@item1.Data.ToString("dddd dd MMM yyyy")</h5>
-                                        </div>
                                     }
+                                    <div class="text-center h4">
+                                        <h4>@Html.DisplayFor(modelItem => item1.Titolo)</h4>
+                                        @if (item1.Città != null)
+                                        {
+                                            <span class="h5">@item1.Città </span><br />
+                                        }
+                                        <span class="h6">@item1.Data.ToString("dddd dd MMM yyyy")</span>
+                                    </div>
                                 </a>
 
                             </div>

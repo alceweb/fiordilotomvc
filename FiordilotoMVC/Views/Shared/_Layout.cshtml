@@ -30,11 +30,9 @@
                     <li>@Html.ActionLink("Didattica", "DidatticaIntro", "Home")</li>
                     <li>@Html.ActionLink("Corsi", "CorsiIntro", "Home")</li>
                     <li><a href="@Url.Action("CounselingIntro", "Home")">TeatroCounseling<span class="h5">®</span></a>
-                    <li>@Html.ActionLink("La nostre parole", "CasaIntro", "Home")</li>
+                    <li>@Html.ActionLink("Scritti&Opinioni", "CasaIntro", "Home")</li>
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"></a></li>
-                        <li><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"></a></li>
                         <li><a href="@Url.Action("Index", "Eventis")" class="glyphicon glyphicon-list-alt"></a></li>
                     }
 
