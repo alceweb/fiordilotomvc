@@ -1,124 +1,60 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <style>
-        @import url("//fonts.googleapis.com/css?family=Advent+Pro:400,600,700");
-
-        html, body {
-            background-color: #f5f5f5;
-            color: #444;
-            font-family: "Advent Pro", arial, sans-serif;
-            letter-spacing: .02rem
-        }
-
-        *, ::before, ::after {
-            box-sizing: border-box;
-        }
-
-        :focus {
-            outline: none;
-        }
-
-        #top {
-            padding: 40px 30px;
-        }
-
-        h1 {
-            font-size: 3em;
-            font-weight: 700;
-            line-height: 2em;
-        }
-
-        p {
-            font-size: 1.5em;
-            line-height: 1.25em;
-            margin: 0 0 1.3em;
-        }
-
-        a {
-            transition: background-color 150ms ease;
-        }
-
-        nav {
-            background-color: #444;
-            height: auto;
-            left: 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-        }
-
-            nav ul {
-                overflow: hidden;
-            }
-
-                nav ul li {
-                    float: left;
-                }
-
-                    nav ul li a {
-                        color: #f5f5f5;
-                        display: block;
-                        font-size: 1.2em;
-                        font-weight: 600;
-                        padding: 10px 30px 14px;
-                        text-align: center;
-                        text-decoration: none;
-                    }
-
-                        nav ul li a:hover {
-                            background-color: #393939;
-                        }
-
-        #go-top {
-            background-color: #444;
-            bottom: 0;
-            color: #f5f5f5 !important;
-            font-size: 4em;
-            font-weight: 700;
-            height: 40px;
-            left: 0;
-            padding: 17px 0 0 26px;
-            position: fixed;
-            text-align: left;
-            text-decoration: none;
-            width: 100%;
-        }
-
-            #go-top:hover {
-                background-color: #393939;
-            }
-
-        @media only screen and (max-width:480px) {
-            h1 {
-                font-size: 2.5em;
-            }
-
-            p {
-                font-size: 1.25em;
-            }
-
-            #top {
-                padding: 40px 15px;
-            }
-
-            #go-top {
-                padding: 17px 0 0 11px;
-            }
-
-            nav ul li {
-                width: 25%;
-            }
-
-                nav ul li a {
-                    padding: 10px 0 14px;
-                    width: 100%;
-                }
-        }
-    </style>
-    <script src="Scripts/jquery-3.2.1.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet"  media="screen" />
 </head>
 <body>
 
-    <iframe width="1800" height="800" src="https://www.youtube.com/embed/hBdVW-D9Iuo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></body>
+    <div class="container">
+        <form action="" class="form-horizontal" role="form">
+            <fieldset>
+                <legend>Test</legend>
+                <div class="form-group">
+                    <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                    <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy HH:ii p" data-link-field="dtp_input1">
+                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input1" value="" /><br />
+                </div>
+                <div class="form-group">
+                    <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                    <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input2" value="" /><br />
+                </div>
+                <div class="form-group">
+                    <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                    <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input3" value="" /><br />
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script src="Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="Scripts/locales/bootstrap-datetimepicker.it.js"></script>
+    <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            language:  'it',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+    </script>
+</body>
 </html>

@@ -28,7 +28,6 @@ namespace FiordilotoMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/bootstrap-datepicker3.css",
                       "~/Content/overlay-bootstrap.css",
                       "~/Content/lightbox.css",
                       "~/Content/site.css"));

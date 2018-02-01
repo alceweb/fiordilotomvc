@@ -40,7 +40,7 @@ namespace FiordilotoMVC.Models
         [Display(Name = "Data evento")]
         [DataType(DataType.Date)]
         [DefaultValue("01/01/2000")]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime Data { get; set; }
         [Display(Name ="Partecipazioni")]
         public string Partecipazioni { get; set; }

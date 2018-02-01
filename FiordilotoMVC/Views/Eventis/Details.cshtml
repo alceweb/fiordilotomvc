@@ -62,8 +62,7 @@
                 @Html.DisplayNameFor(model => model.Data)
             </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Data)
+            <dd>@Model.Data.ToString("dddd dd-MMM-yyyy")
             </dd>
 
             <dt>

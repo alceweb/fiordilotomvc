@@ -67,7 +67,6 @@
                 </div>
             </div>
 
-
             <section id="credits">
 
                 <div class="form-group">
@@ -79,6 +78,8 @@
                 </div>
 
             </section>
+
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2", id = "lbldata" })
                 <div class="col-md-10">
@@ -87,10 +88,8 @@
                         {
                             Html.EnableClientValidation(false);
                         }
-
-                    }
-                    @Html.TextBoxFor(model => model.Data, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
-                    @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                    <input class="form-control form_date" size="16" name="Data" data-date-format="dd-MM-yyyy" type="text" value="@Model.Data.ToString("dd-MM-yyyy")">
+                        }
                     @{ Html.EnableClientValidation(true);}
                 </div>
             </div>
@@ -133,7 +132,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Descrizione, new { @class = "ckeditor" })
+                    @Html.TextAreaFor(model => model.Descrizione, new {@class = "ckeditor"})
                     @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -154,28 +153,23 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/locales/bootstrap-datetimepicker.it.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        if ($('#credit').prop('checked')) {
-            $('#credit').show();
-            $('#credits').show();
-            $('#nocredits').hide();
-            $('#casa').hide();
-
-        }
-        else if ($('#casa').prop('checked')) {
-            $('#credits').show();
-            $('#credit').hide();
-            $('#nocredits').hide();
-            $('#casa').show();
-        }
-        else {
-            $('#credits').hide();
-        }
-
+    $('.form_date').datetimepicker({
+        language: 'it',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
     });
-    $('.datepicker').datepicker('option', 'dateFormat', 'dd/mm/yyyy');
 </script>
+
+
 
 
 }
